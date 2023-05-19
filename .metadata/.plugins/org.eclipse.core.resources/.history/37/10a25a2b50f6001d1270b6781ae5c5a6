@@ -1,0 +1,28 @@
+package entities;
+
+import static utilz.Constants.EnemyConstant.*;
+import static utilz.Constants.Directions.*;
+public class EnemyManager {
+	int enemyState;
+	public double walkSpeed = 10;
+	public int walkDir = LEFT;
+	public EnemyManager() {
+		
+	}
+	public void updateMove() {
+		switch(enemyState) {
+		case IDLE:
+			enemyState = RUN;
+			break;
+		case RUN:
+			double xSpeed = 0;
+			
+			if(walkDir == LEFT)
+				xSpeed -= walkSpeed;
+			break;
+		}
+	}
+	public void updateEAnimation() {
+		
+	}
+}

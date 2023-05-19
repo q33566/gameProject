@@ -3,11 +3,11 @@ package entities;
 
 import static utilz.Constants.Directions.*;
 import static utilz.Constants.PlayerConstant.*;
-import static collision.Collision.canMove;
 import application.GameCanva;
 import application.GameLoop;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import utilz.Constants.EnemyConstant;
 
 public class Player extends Entity{
 	GameLoop loop = new GameLoop(this);
@@ -15,7 +15,7 @@ public class Player extends Entity{
 	public Image[] playerAnimation2 = new Image[9];
 
 	GameCanva canva;
-	Enemy enemy = new Enemy(400,400,80,120);
+	Enemy enemy = new Enemy(400,275,80,120);
 	
 	int playerAction = IDLE;
 	int playerSpeed = 10;
@@ -61,15 +61,16 @@ public class Player extends Entity{
 		}
 	}
 	public void draw() {
-		canva.gc.drawImage(enemy.attack, 200, 200, 200, 100);
+		canva.gc.drawImage(enemy.EnemyAnimation[EnemyConstant.RUN], enemy.x, enemy.y, 200, 100);
 		canva.gc.drawImage(playerAnimation[playerAction],x-70, y-40, 240,160);
-		canva.ground.fillRect(0, 370, 500, 40);
+		canva.ground.fillRect(0, 370, 1000, 40);
 		canva.ground.setFill(Color.BLACK);
 		drawHitbox(canva.gc);
 	}
 	public void reFresh() {
 		canva.gc.clearRect(0, 0, canva.canva.getWidth(), canva.canva.getHeight());
 		updatePosition();
+		enemy.updateMove();
 		if(!animationLock) {
 			setAnimation();
 		}
@@ -96,10 +97,20 @@ public class Player extends Entity{
 			playerMoving = true;
 
 		}
-		if(canMove(x + xSpeed, y+ySpeed+height)) {
+		if(canMove()) {
 			this.x += xSpeed;
 			this.y += ySpeed;
 		}
+	}
+
+
+
+
+	private boolean canMove() {
+		if(x>0 && x<1000)
+			return true;
+		else
+			return false;
 	}
 
 

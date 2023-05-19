@@ -1,0 +1,26 @@
+package entities;
+
+import utilz.Constants.EnemyConstant;
+
+public class EnemyManager {
+	int enemyState;
+	public EnemyManager() {
+		
+	}
+	public void updateMove() {
+		switch(enemyState) {
+		case EnemyConstant.IDLE:
+			enemyState = EnemyConstant.RUN;
+			break;
+		case EnemyConstant.RUN:
+			double xSpeed = 0;
+			
+			if(walkDir == LEFT)
+			
+				break;
+		}
+	}
+	public void updateEAnimation() {
+		
+	}
+}

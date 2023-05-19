@@ -1,5 +1,0 @@
-package entities;
-
-public class Enemy {
-	Image[] animation = new Image[5];
-}

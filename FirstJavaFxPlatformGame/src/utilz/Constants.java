@@ -1,6 +1,13 @@
 package utilz;
 
 public class Constants {
+	public static class EnemyConstant{
+		public static final int IDLE = 0;
+		public static final int ATTACK = 1;
+		public static final int RUN = 2;
+		public static final int TAKE_HIT = 3;
+		public static final int DEATH = 4;
+	}
 	public static class Directions{
 		public static final int LEFT = 0;
 		public static final int UP = 1;

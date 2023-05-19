@@ -1,0 +1,20 @@
+package entities;
+
+import utilz.Constants.EnemyConstant;
+
+public class EnemyManager {
+	EnemyConstant enemyState;
+	public EnemyManager() {
+		
+	}
+	public void updateMove() {
+		switch(enemyState) {
+		case IDLE:
+		case RUNNING:
+		case 
+		}
+	}
+	public void updateEAnimation() {
+		
+	}
+}

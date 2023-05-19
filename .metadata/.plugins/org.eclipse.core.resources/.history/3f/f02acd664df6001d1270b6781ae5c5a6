@@ -1,0 +1,13 @@
+package entities;
+
+public class EnemyManager {
+	public EnemyManager() {
+		
+	}
+	public void updateMove() {
+		
+	}
+	public void updateEAnimation() {
+		
+	}
+}
