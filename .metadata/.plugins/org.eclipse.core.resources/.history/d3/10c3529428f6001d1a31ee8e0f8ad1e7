@@ -1,0 +1,6 @@
+package gameState;
+
+public enum GameState {
+	PLAYING, MENU, state;
+	public static GameState state = MENU;
+}

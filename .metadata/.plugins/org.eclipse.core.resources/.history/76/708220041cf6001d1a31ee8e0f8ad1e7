@@ -1,0 +1,21 @@
+package application;
+
+import inputs.KeyBoardInputs;
+import inputs.MouseInputs;
+import javafx.scene.Scene;
+
+public class GameScene {
+	Scene scene;
+	GamePane pane;
+	GameScene(){
+		pane = new GamePane();
+		scene = new Scene(pane.root,1000,800);
+		KeyBoardInputs keyBoardInputs = new KeyBoardInputs(pane.player);
+		MouseInputs  mouseInputs = new MouseInputs(pane.player);
+		scene.setOnKeyPressed(keyBoardInputs);
+		scene.setOnKeyReleased(keyBoardInputs);
+		scene.setOnMouseClicked(mouseInputs);
+		//scene.setOnMouseMoved(mouseInput);
+		new GameLoop(pane.player);
+	}
+}

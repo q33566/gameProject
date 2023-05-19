@@ -1,0 +1,13 @@
+INDEX VERSION 1.131+C:\Users\qaz57\Desktop\MyJavaFxGame-home-main\.metadata\.plugins\org.eclipse.jdt.core
+48855871.index
+3653040925.index
+2374605700.index
+3607270153.index
+289841775.index
+1076473154.index
+1890775152.index
+1459059142.index
+1865797976.index
+4029307282.index
+3959137331.index
+1163152300.index
