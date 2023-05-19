@@ -1,5 +1,6 @@
 package application;
 
+import entities.Enemy;
 import entities.Player;
 import javafx.animation.AnimationTimer;
 
@@ -16,6 +17,7 @@ public class GameLoop extends AnimationTimer{
 	public GameLoop(Player player){
 		this.player = player;
 	}
+
 	
 	@Override
 	public void handle(long now) {

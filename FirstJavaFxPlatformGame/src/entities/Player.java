@@ -15,6 +15,8 @@ public class Player extends Entity{
 	public Image[] playerAnimation2 = new Image[9];
 
 	GameCanva canva;
+	Enemy enemy = new Enemy(400,400,80,120);
+	
 	int playerAction = IDLE;
 	int playerSpeed = 10;
 	public boolean up, down, left, right, jump;
@@ -59,6 +61,7 @@ public class Player extends Entity{
 		}
 	}
 	public void draw() {
+		canva.gc.drawImage(enemy.attack, 200, 200, 200, 100);
 		canva.gc.drawImage(playerAnimation[playerAction],x-70, y-40, 240,160);
 		canva.ground.fillRect(0, 370, 500, 40);
 		canva.ground.setFill(Color.BLACK);

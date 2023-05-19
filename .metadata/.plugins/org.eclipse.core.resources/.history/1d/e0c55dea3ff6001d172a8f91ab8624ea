@@ -1,0 +1,19 @@
+package entities;
+
+import application.GameCanva;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class Enemy extends Entity{
+	Image idle = new Image(getClass().getResourceAsStream("/Flight.png"));
+	ImageView animation = new ImageView(idle);
+	GameCanva canva;
+
+	public Enemy(double x, double y, int width, int height, GameCanva canva) {
+		super(x,y,width,height);
+		this.canva = canva;
+	}
+	public void loadAnimations() {
+		
+	}
+}

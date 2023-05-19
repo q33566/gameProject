@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
     <fullyQualifiedTypeName name="javafx.util.Duration"/>
     <fullyQualifiedTypeName name="application.GameCanva"/>
-    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
     <fullyQualifiedTypeName name="utilz.Constants"/>
     <fullyQualifiedTypeName name="utilz.Constants.PlayerConstant"/>
     <fullyQualifiedTypeName name="entities.Player"/>
@@ -19,4 +18,8 @@
     <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
     <fullyQualifiedTypeName name="collision.Collision"/>
     <fullyQualifiedTypeName name="gameState.GameState"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
+    <fullyQualifiedTypeName name="entities.Enemy"/>
 </qualifiedTypeNameHistroy>

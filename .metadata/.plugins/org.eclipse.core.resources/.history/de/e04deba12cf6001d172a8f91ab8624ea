@@ -1,0 +1,25 @@
+package application;
+	
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.stage.Stage;
+
+
+public class GameWindow {
+	GameScene gameScene;
+	Stage stage = new Stage();
+	GameWindow(){
+		gameScene = new GameScene();
+		stage.setScene(gameScene.scene);
+		stage.focusedProperty().addListener((new ChangeListener<Boolean>(){
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+				// TODO Auto-generated method stub
+				gameScene.pane.player.resetDirectionBooleans();
+			}
+		
+		}));
+		stage.show();
+	}
+}

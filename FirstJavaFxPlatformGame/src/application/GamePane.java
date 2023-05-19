@@ -1,5 +1,6 @@
 package application;
 
+import entities.Enemy;
 import entities.Player;
 import javafx.scene.layout.Pane;
 

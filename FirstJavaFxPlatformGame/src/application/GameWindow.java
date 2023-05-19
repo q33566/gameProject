@@ -6,17 +6,17 @@ import javafx.stage.Stage;
 
 
 public class GameWindow {
-	GameScene scene;
+	GameScene gameScene = new GameScene();
 	Stage stage = new Stage();
+	MenuScene menuScene = new MenuScene(stage,gameScene);
 	GameWindow(){
-		scene = new GameScene();
-		stage.setScene(scene.scene);
+		stage.setScene(menuScene.menuScene);
 		stage.focusedProperty().addListener((new ChangeListener<Boolean>(){
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
 				// TODO Auto-generated method stub
-				scene.pane.player.resetDirectionBooleans();
+				gameScene.pane.player.resetDirectionBooleans();
 			}
 		
 		}));
