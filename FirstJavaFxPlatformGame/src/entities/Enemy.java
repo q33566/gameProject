@@ -8,23 +8,44 @@ import javafx.scene.image.Image;
 import utilz.Constants.EnemyConstant;
 
 public class Enemy extends Entity{
-	Image[] EnemyAnimation = new Image[5];
-	int enemyState = RUN;
+	public boolean death = false;
+	public Image[] EnemyAnimation = new Image[5];
+	public int enemyState = RUN;
 	public double walkSpeed = 5;
+	public boolean dying = false;
+	public int health = 2;
 	public int walkDir = LEFT;
-	public Enemy(double x, double y, int width, int height) {
+	public Player player;
+	public Enemy(double x, double y, int width, int height, Player player) {
 		super(x,y,width,height);
+		this.player = player;
 		EnemyAnimation[EnemyConstant.IDLE] = new Image(getClass().getResourceAsStream("/e_idle.gif"));
 		EnemyAnimation[EnemyConstant.ATTACK] = new Image(getClass().getResourceAsStream("/e_attack.gif"));
 		EnemyAnimation[EnemyConstant.RUN] = new Image(getClass().getResourceAsStream("/e_run.gif"));
 		EnemyAnimation[EnemyConstant.TAKE_HIT] = new Image(getClass().getResourceAsStream("/e_Take Hit.gif"));
 		EnemyAnimation[EnemyConstant.DEATH] = new Image(getClass().getResourceAsStream("/e_death.gif"));
 	}
-	
+	public boolean attacked() {
+		if(-50 < x-player.x && x-player.x < 50) {
+			//System.out.println("can attack");
+			if(player.attacking) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public void updateMove() {
-		if(enemyState == IDLE) {
+		if(attacked()) {
+			//System.out.println("W");
+			enemyState = TAKE_HIT;
+			System.out.println(health);
+		}
+		if(health == 0 && enemyState!=-1) {
+			enemyState = DEATH;
+		}
+		/*if(enemyState != RUN) {
 			enemyState = RUN;
-		}else if(enemyState == RUN) {
+		}*/else if(enemyState == RUN) {
 			double xSpeed = 0;
 			if(walkDir == LEFT) {
 				xSpeed = -walkSpeed;

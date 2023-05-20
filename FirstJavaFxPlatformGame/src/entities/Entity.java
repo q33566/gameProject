@@ -18,11 +18,11 @@ public abstract class Entity {
 	private void initHitbox() {
 		hitbox = new Rectangle((int) x, (int) y, width, height);
 	}
-	protected void drawHitbox(GraphicsContext gc) {
+	public void drawHitbox(GraphicsContext gc) {
 		gc.strokeRect(x, y, width, height);
 		//gc.fillRect(hitbox.getX(), hitbox.getY(), width, height);
 	}
-	protected void updateHitbox() {
+	public void updateHitbox() {
 		hitbox.setX((int) x);
 		hitbox.setY((int) y);
 	}

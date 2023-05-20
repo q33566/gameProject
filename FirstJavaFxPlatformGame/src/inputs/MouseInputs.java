@@ -19,7 +19,6 @@ public class MouseInputs implements EventHandler<MouseEvent>{
 		}*/
 		if(event.getEventType()==MouseEvent.MOUSE_CLICKED) {
 			player.attacking = true;
-			System.out.print("WW");
 		}
 	}
 

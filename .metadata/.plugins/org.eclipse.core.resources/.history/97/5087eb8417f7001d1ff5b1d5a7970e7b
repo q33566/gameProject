@@ -1,0 +1,84 @@
+package application;
+
+import entities.Enemy;
+import entities.Player;
+import javafx.animation.AnimationTimer;
+import javafx.scene.paint.Color;
+import utilz.Constants.EnemyConstant;
+
+public class GameLoop extends AnimationTimer{
+	
+	long lastFrame = 0;
+	final int FPS = 60;
+	final int UPS = 120;
+	long timePerFram = 1000000000/FPS;
+	long attackingFrame = 1000000000;
+	long attackTracker;
+	long e_hitTracker;
+	Player player;
+	Enemy enemy;
+	GameCanva canva;
+	
+	public GameLoop(Player player, Enemy enemy, GameCanva canva){
+		this.player = player;
+		this.enemy = enemy;
+		this.canva = canva;
+		player.importImage();
+		draw();
+		start();
+	}
+	public void draw() {
+		canva.gc.drawImage(player.healthImg ,10,10);
+		canva.gc.setFont(javafx.scene.text.Font.font("Arial", 25));
+		canva.gc.fillText(String.format("x%d",player.health), 40, 34);
+		canva.gc.drawImage(enemy.EnemyAnimation[enemy.enemyState], enemy.x, enemy.y, 200, 100);
+		canva.gc.drawImage(player.playerAnimation[player.playerAction],player.x-70, player.y-40, 240,160);
+		canva.ground.fillRect(0, 370, 1000, 40);
+		canva.ground.setFill(Color.BLACK);
+		player.drawHitbox(canva.gc);
+	}
+	public void reFresh() {
+		canva.gc.clearRect(0, 0, canva.canva.getWidth(), canva.canva.getHeight());
+		player.updatePosition();
+		enemy.updateMove();
+		/*if(!player.animationLock) {
+		}*/
+		player.setAnimation();
+		player.updateHitbox();
+		draw();
+	}
+	@Override
+	public void handle(long now) {
+		// TODO Auto-generated method stub
+		if(now-lastFrame>=timePerFram && player.attacking == false) {
+				//player.animationLock = false;
+				reFresh();
+				lastFrame = now;
+				attackTracker = now;
+				if(now - e_hitTracker>600000000) {
+					enemy.enemyState = EnemyConstant.RUN;
+				}
+				System.out.println(enemy.enemyState);
+
+		}else if(now-lastFrame>=timePerFram && player.attacking == true ){
+			reFresh();
+			//player.animationLock = true;
+			lastFrame = now;
+			if(now - attackTracker>500000000) {
+				player.attacking = false;
+			}
+			if(enemy.enemyState == EnemyConstant.TAKE_HIT) {
+				e_hitTracker = now;
+			}
+		}if(now-lastFrame>=timePerFram && player.attacking == true && enemy.enemyState == EnemyConstant.TAKE_HIT) {
+			/*reFresh();
+			//player.animationLock = true;
+			lastFrame = now;
+			System.out.println("hited");
+			if(now - temp>500000000) {
+				System.out.println("hited");
+				enemy.enemyState = EnemyConstant.RUN;
+			}*/
+		}
+	}
+}

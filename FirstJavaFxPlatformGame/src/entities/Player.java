@@ -10,14 +10,13 @@ import javafx.scene.paint.Color;
 import utilz.Constants.EnemyConstant;
 
 public class Player extends Entity{
-	GameLoop loop = new GameLoop(this);
 	public Image[] playerAnimation = new Image[9];
 	public Image[] playerAnimation2 = new Image[9];
-
+	public Image healthImg = new Image(getClass().getResourceAsStream("/Health.png"));
 	GameCanva canva;
-	Enemy enemy = new Enemy(400,275,80,120);
 	
-	int playerAction = IDLE;
+	public int health = 3;
+	public int playerAction = IDLE;
 	int playerSpeed = 10;
 	public boolean up, down, left, right, jump;
 	boolean playerMoving = false;
@@ -25,10 +24,6 @@ public class Player extends Entity{
 	public boolean animationLock = false;
 	public Player(double x, double y, int width, int height, GameCanva canva) {
 		super(x,y,width,height);
-		this.canva = canva;
-		importImage();
-		draw();
-		loop.start();
 	}
 	
 	
@@ -49,7 +44,6 @@ public class Player extends Entity{
 	public void setAnimation() {
 		if(playerMoving) {
 			playerAction = RUNNING;
-			System.out.println("run");
 
 		}else {
 			playerAction = IDLE;
@@ -57,26 +51,10 @@ public class Player extends Entity{
 		
 		if(attacking) {
 			playerAction = ATTACK_1;
-			System.out.println("attack");
 		}
 	}
-	public void draw() {
-		canva.gc.drawImage(enemy.EnemyAnimation[EnemyConstant.RUN], enemy.x, enemy.y, 200, 100);
-		canva.gc.drawImage(playerAnimation[playerAction],x-70, y-40, 240,160);
-		canva.ground.fillRect(0, 370, 1000, 40);
-		canva.ground.setFill(Color.BLACK);
-		drawHitbox(canva.gc);
-	}
-	public void reFresh() {
-		canva.gc.clearRect(0, 0, canva.canva.getWidth(), canva.canva.getHeight());
-		updatePosition();
-		enemy.updateMove();
-		if(!animationLock) {
-			setAnimation();
-		}
-		updateHitbox();
-		draw();
-	}
+	
+	
 	public void updatePosition() {
 		playerMoving = false;
 		if(!left && !right && !up && !down) {
@@ -97,17 +75,29 @@ public class Player extends Entity{
 			playerMoving = true;
 
 		}
-		if(canMove()) {
+		if(canMoveLeft()&&canMoveRight()) {
 			this.x += xSpeed;
 			this.y += ySpeed;
+		}else if(canMoveLeft()&&!canMoveRight()) {
+			if(xSpeed<0)
+				this.x += xSpeed;
+		}else if(!canMoveLeft()&&canMoveRight()) {
+			if(xSpeed>0)
+				this.x += xSpeed;
 		}
 	}
 
 
 
 
-	private boolean canMove() {
-		if(x>0 && x<1000)
+	private boolean canMoveLeft() {
+		if(x>=0)
+			return true;
+		else
+			return false;
+	}
+	private boolean canMoveRight() {
+		if(x+width<=1000)
 			return true;
 		else
 			return false;

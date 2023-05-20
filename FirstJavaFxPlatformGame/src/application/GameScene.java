@@ -16,6 +16,5 @@ public class GameScene {
 		scene.setOnKeyReleased(keyBoardInputs);
 		scene.setOnMouseClicked(mouseInputs);
 		//scene.setOnMouseMoved(mouseInput);
-		new GameLoop(pane.player);
 	}
 }
